@@ -1,0 +1,14 @@
+#x="  oliver lewandowski"
+#print(x.split())
+#print(x)
+#print(x.strip())
+import random
+def generate_username(full_name):
+    name_parts=full_name.split()
+    if len(name_parts)<2:
+        return "please enter full name (first and last)"
+    first_name=name_parts[0].lower()
+    last_name=name_parts[-1].lower()
+    #basic combinations
+    username1=first_name+last_name
+    username2=first_name[:3]+last_name[-3:]
