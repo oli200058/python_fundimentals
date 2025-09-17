@@ -1,0 +1,22 @@
+dictionary={}
+while True:
+    print("\nmini Dictionary App\n")
+
+    print("1. add\update word")
+
+    print("2. Retrieve a words devenition")
+
+    print("3. delete a word")
+
+    print("4.view all words")
+
+    print("5. Exit")
+
+    choice=input("choose an option (1-5): ")
+
+    if choice=='1':
+        word=input('enter the word: ').strip()
+        #strip function removes any space
+        definition=input('enter the definition: ').strip()
+        dictionary[word]=definition
+        print(f"word'{word}'added/updated successfully!")
