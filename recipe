@@ -1,0 +1,13 @@
+#converting cups to grams
+def cups_to_grams(cups,convertion_rate):
+    return cups*convertion_rate
+#converting table spoons to tea spoons
+def tablesppons_to_teaspoons(tablespoons):
+    return tablespoons*3
+#turning grams to cups
+def grams_to_cups(grams,convertion_rate):
+    return grams/convertion_rate
+
+#main program
+def recipe_converter():
+    print("\nwelcome to the recipe converter!")
