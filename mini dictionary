@@ -2,7 +2,7 @@ dictionary={}
 while True:
     print("\nmini Dictionary App\n")
 
-    print("1. add\update word")
+    print("1. add/update word")
 
     print("2. Retrieve a words devenition")
 
@@ -20,3 +20,37 @@ while True:
         definition=input('enter the definition: ').strip()
         dictionary[word]=definition
         print(f"word'{word}'added/updated successfully!")
+    
+    elif choice=='2':
+        word=input('enter the word to retrieve').strip()
+        if word in dictionary:
+            print(f'{word} : {dictionary[word]}')
+        else:
+            print(f"the word {word} is not in the dictionary")
+    
+    elif choice=='3':
+        word=input("enter the word to delete").strip()
+        if word in dictionary:
+            del dictionary[word]
+            print("the word '{word}' has been deleted")
+        
+        else:
+            print("the word {word} is not in the dictionary")
+
+    
+    elif choice=='4':
+        if dictionary:
+            print("\nwords in the dictionary")
+            for word in dictionary:
+                print(f"{word} : {dictionary[word]}")
+
+        else:
+            print("dictionary is empty")
+
+    
+    elif choice=="5":
+        print("exiting the mini dictionary app.goodbye!")
+        break
+
+    else:
+        print("invalid choice try again")
