@@ -2,7 +2,7 @@
 def cups_to_grams(cups,convertion_rate):
     return cups*convertion_rate
 #converting table spoons to tea spoons
-def tablesppons_to_teaspoons(tablespoons):
+def tablespoons_to_teaspoons(tablespoons):
     return tablespoons*3
 #turning grams to cups
 def grams_to_cups(grams,convertion_rate):
@@ -11,3 +11,49 @@ def grams_to_cups(grams,convertion_rate):
 #main program
 def recipe_converter():
     print("\nwelcome to the recipe converter!")
+
+    while True:
+        print("\nchoose an option:")
+        print("1. convert cups to grams")
+        print("2. convert table spoons to teaspoons")
+        print("3. convert grams to cups")
+        print("4. exit")
+        choice=int(input("enter your choice (1-4): "))
+
+        if choice == 1:
+            cups=float(input("enter the number of cups: "))
+            conversion_rate=float(input("enter grams per cup of ingredient: "))
+            result=cups_to_grams(cups,conversion_rate)
+            print(f'result:{result:.2f} grams')
+
+
+        elif choice == 2:
+            tablespoons=float(input("enter number of tablespoons: "))
+            result=tablespoons_to_teaspoons(tablespoons)
+            print(f'result:{result:.2f} teaspoons')
+
+
+        elif choice == 3:
+            grams=float(input("enter number of grams: "))
+            conversion_rate=float(input("enter the grams per cup for the ingredient: "))
+            result=grams_to_cups(grams,conversion_rate)
+            print(f'result:{result:.2f} cups')
+
+
+        elif choice == 4:
+            print("thank you for using the recipe converter. goodbye.")
+            break
+
+        
+
+
+
+
+
+
+               
+        else:
+            print("invalid choice please try again")
+
+
+recipe_converter()
