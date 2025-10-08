@@ -1,0 +1,7 @@
+from datetime import datetime
+def add_entry():
+    entry=input("write you journal entry:")
+    with open("journal.txt","a")as file:
+        date=datetime.now().strftime("%d-%m-%Y %H:%M:%S")
+        file.write(date + " " + entry + "\n")
+    print("entry saved")
