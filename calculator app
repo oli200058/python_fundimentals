@@ -1,0 +1,42 @@
+def calculator():
+    print("welcome to the calculator app!")
+
+    while True:
+        try:
+            num1=float(input("enter the first number: "))
+        except ValueError:
+            print("invalid input please input a number: ")
+            continue
+        try:
+            num2=float(input("enter the second number: "))
+        except ValueError:
+            print("invalid input please enter a number: ")
+
+        operator=input("enter your choice\n(+,-,*,/): ").strip()
+        try:
+            if operator=='+':
+                output=num1+num2
+
+            elif operator=='-':
+                output=num1-num2
+
+            elif operator=='*':
+                output=num1*num2
+
+            elif operator=='/':
+                output=num1/num2
+
+            else:
+                raise ValueError("invalid operator")
+        except ZeroDivisionError:
+            print("error:cannot divide by zero!")
+            continue
+        except ValueError:
+            print("invalid operator! please use +,-,* or /.")
+            continue
+        print(f"your result is={output}")
+        calc=input("do you want to carry on (yes/no)?: ").strip().lower()
+        if calc !='yes':
+            print("thanks for using the calculator app!")
+            break
+calculator()
