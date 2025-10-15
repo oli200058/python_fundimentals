@@ -5,3 +5,28 @@ def add_entry():
         date=datetime.now().strftime("%d-%m-%Y %H:%M:%S")
         file.write(date + " " + entry + "\n")
     print("entry saved")
+
+def view_entry():
+    with open("journal.txt","r")as file:
+        print("/n your journal entries")
+        index=0
+        for line in file:
+            print(f'{index}.{line.strip()}')
+            index += 1
+            
+while True:
+    print("\njournal entries app\n1.Add entry\n2.view entries\n3.exit")
+    choice=int(input("choose an option: "))
+
+    if choice==1:
+        add_entry()
+
+    elif choice==2:
+        view_entry()
+
+    elif choice==3:
+        print("thanks for using the app. goodbye")
+        break
+
+    else:
+        print("invalid number please try again")
