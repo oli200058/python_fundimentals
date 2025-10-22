@@ -1,0 +1,45 @@
+import random
+
+word_list=["french","scribble","door","insane","suberb","interliminal","kind"]
+
+def jumble_word(word):
+    word_list=list(word)
+    random.shuffle(word_list)
+    return ''.join(word_list)
+
+def get_hint(word):
+    return f'the first letter of the word is :{word[0]}'
+
+def play_game():
+    score=0
+    rounds=10
+    print("welcome to the jumble words game!\n")
+    for round_num in range(1,rounds+1):
+        word=random.choice(word_list)
+        scrambled_word=jumble_word(word)
+        print("you have to guess the original word from the given letteres")
+        print(f'\nround:{round_num}')
+        print(f'the scrambled word is: {scrambled_word}')
+        hint_choice=input("do you want a hint?(yes/no)").lower()
+        if hint_choice=="yes":
+            print(get_hint(word))
+        guess=input("guess the correct word: ").lower()
+        while not guess.isalpha():
+            print("invalid. please enter a word")
+            guess=input("guess the correct word: ").lower()
+        
+        if guess==word:
+            print("you guessed the word correctly")
+            score += 1
+        else:
+            print("you guessed wrong")
+            print(f'the correct word was: {word}')
+    print("game over")
+    print(f'your final score is: {score}')
+
+play_game()
+
+    
+      
+  
+
