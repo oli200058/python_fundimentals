@@ -1,0 +1,84 @@
+import turtle
+import random
+import time
+
+sc=turtle.Screen()
+sc.bgcolor("sky blue")
+sc.setup(800,700)
+sc.tracer(0)
+
+p=turtle.Turtle()
+p.shape("triangle")
+p.color("red")
+p.penup()
+p.goto(0,-320)
+#score
+score=0
+score_display=turtle.Turtle()
+score_display.hideturtle()
+score_display.penup()
+score_display.goto(-350,300)
+score_display.color("red")
+score_display.write(f'score: {score}',font=("Arial",16,"normal"))
+
+#balloons
+balloons=[]
+game_speed=0.02
+difficulty_inc=0.001
+spawn_interval=2
+last_spawn_time=time.time()
+running=True
+
+def move_left():
+    x=p.xcor()-30
+    if x  > -390:
+        p.setx(x)
+
+
+def move_right():
+    x=p.xcor()+30
+    if x  < 390:
+        p.setx(x)
+
+
+def spawn_balloons():
+    balloon=turtle.Turtle()
+    balloon.penup()
+    balloon.shape("circle")
+    balloon_color=["red","blue","yellow","green","purple","orange"]
+    balloon.color(random.choice(balloon_color))
+    balloon.goto(random.randint(-350,350),random.randint(200,300))
+    balloon.speed(random.uniform(1,5))
+    if random.randint()<0.2:
+        balloon.color("black")
+        balloon.is_bomb=True
+    else:
+        balloon.is_bomb=False
+
+    balloons.append(balloon)
+
+def update_score(points):
+    global score
+    score += points
+    score_display.write(f'score: {score}',font=("Arial",16,"normal"))
+
+
+def game_over():
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+sc.mainloop()
