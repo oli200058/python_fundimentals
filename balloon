@@ -60,10 +60,51 @@ def spawn_balloons():
 def update_score(points):
     global score
     score += points
+    score_display.clear()
     score_display.write(f'score: {score}',font=("Arial",16,"normal"))
 
 
 def game_over():
+    global running
+    running = False
+    game_over_display=turtle.Turtle()
+    game_over_display.hideturtle()
+    game_over_display.color("red")
+    game_over_display.write("GAME OVER", align="center", font=("arial",36,"bold"))
+    sc.update()
+    time.sleep(2)
+    sc.bye()
+
+    #keybinds
+    sc.listen()
+    sc.onkey(move_left,"Left")
+    sc.onkey(move_right,"Right")
+
+    #game loop
+
+    sc.update()
+    current_time=time.time()
+    if current_time-last_spawn_time>spawn_interval:
+        spawn_balloons()
+        last_spawn_time=current_time
+    
+    for balloon in balloon[:]:
+        balloon.sety(balloon.ycor()-balloon.speed)
+        balloon.remove(balloon)
+        balloon.hideturtle()
+
+        if p.distance(balloon)<30:
+            if balloon.is_bomb:
+                game_over()
+            else:
+                update_score(10)
+
+            balloon.remove(balloons)
+            balloon.hideturtle()
+    game_speed=max(0.005,game_speed-difficulty_inc)
+    spawn_interval=max(0.5,spawn_interval-0.0005)
+    time.sleep(game_speed)
+
 
         
 
