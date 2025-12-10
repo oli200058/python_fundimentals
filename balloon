@@ -22,7 +22,7 @@ score_display.color("red")
 score_display.write(f'score: {score}',font=("Arial",16,"normal"))
 
 #balloons
-balloons=[]
+balloons=[] #list
 game_speed=0.02
 difficulty_inc=0.001
 spawn_interval=2
@@ -42,14 +42,14 @@ def move_right():
 
 
 def spawn_balloons():
-    balloon=turtle.Turtle()
+    balloon=turtle.Turtle() #pen or variable
     balloon.penup()
     balloon.shape("circle")
     balloon_color=["red","blue","yellow","green","purple","orange"]
     balloon.color(random.choice(balloon_color))
     balloon.goto(random.randint(-350,350),random.randint(200,300))
-    balloon.speed(random.uniform(1,5))
-    if random.randint()<0.2:
+    balloon.speed=(random.uniform(1,5))
+    if random.random() < 0.2:
         balloon.color("black")
         balloon.is_bomb=True
     else:
@@ -75,23 +75,24 @@ def game_over():
     time.sleep(2)
     sc.bye()
 
-    #keybinds
-    sc.listen()
-    sc.onkey(move_left,"Left")
-    sc.onkey(move_right,"Right")
+#keybinds
+sc.listen()
+sc.onkey(move_left,"Left")
+sc.onkey(move_right,"Right")
 
     #game loop
-
+while running:
     sc.update()
     current_time=time.time()
     if current_time-last_spawn_time>spawn_interval:
         spawn_balloons()
         last_spawn_time=current_time
     
-    for balloon in balloon[:]:
-        balloon.sety(balloon.ycor()-balloon.speed)
-        balloon.remove(balloon)
-        balloon.hideturtle()
+    for balloon in balloons[:]:
+        balloon.sety(balloon.ycor() - balloon.speed)
+        if balloon.ycor() < -300:
+            balloons.remove(balloon)
+            balloon.hideturtle()
 
         if p.distance(balloon)<30:
             if balloon.is_bomb:
@@ -99,9 +100,9 @@ def game_over():
             else:
                 update_score(10)
 
-            balloon.remove(balloons)
+            balloons.remove(balloon)
             balloon.hideturtle()
-    game_speed=max(0.005,game_speed-difficulty_inc)
+    game_speed=max(0.005,game_speed - difficulty_inc)
     spawn_interval=max(0.5,spawn_interval-0.0005)
     time.sleep(game_speed)
 
