@@ -52,7 +52,67 @@ final_score.hideturtle()
 final_score.goto(0,0)
 
 deaths=0
+
 #player movement
+def move_left():
+    x=paddle.xcor()
+    if x >-300:
+        paddle.setx(x-45)
 
+def move_right():
+    x=paddle.xcor()
+    if x <300:
+        paddle.setx(x+45)
 
+sc.listen()
+sc.onkey(move_left,'a')
+
+sc.onkey(move_right,'d')
+
+game_started=False
+def start_game(x,y):
+    global game_started
+    game_started=True
+sc.onclick(start_game)
+timer=0
+backup_timer=0
+
+def start_screen():
+    pass
+
+while True:
+    sc.update()
+    time.sleep(0.01)
+    if not game_started:
+        continue
+    ball.setx(ball.xcor()+ball.dx)
+    ball.sety(ball.ycor()+ball.dy)
+
+    #ball colision with walls
+    if(ball.xcor()>290)or(ball.xcor()<-290):
+        ball.dx*=-1
+
+    if ball.ycor()>290:
+        ball.dy*=-1
+    if ball.ycor()<-290:
+        ball.goto(0,0)
+        ball.dy*=-1
+        game_started=False
+        score=0
+        score_display.clear()
+        score_display.write("SCORE: {}".format(score),align="centre",font=("arial",30,"bold"))
+    deaths += 1
+    #ball colision 
+    if(ball.ycor()>-250 and ball.ycor()<-180)and(paddle.xcor()-paddle_width//2<ball.xcor()<paddle.xcor()+paddle_width//2):
+        ball.dy *=-1
+    for brick in bricks:
+        if abs(ball.xcor()-brick.xcor())<40 and abs(ball.ycor()-brick.ycor())<15
+    ball.dy*=-1
+    brick.hideturtle()
+    bricks.remove(brick)
+    score+=100
+   
+    score_display.clear()
+    score_display.write("SCORE: {}".format(score),align="centre",font=("Arial",30,"bold"))
+    
 
